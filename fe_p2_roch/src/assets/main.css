@@ -1,0 +1,108 @@
+@import './base.css';
+
+/* Layout shell */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: var(--vt-c-white);
+  border-bottom: 1px solid var(--vt-c-divider-light-1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--vt-c-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+nav {
+  justify-content: flex-start;
+}
+
+nav a {
+  color: var(--vt-c-text-light-1);
+  text-decoration: none;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  background-color: #7cfc00;
+  color: #151c0e;
+}
+
+nav a.router-link-exact-active {
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  padding: 28px 0;
+  background: var(--color-background);
+}
+
+footer {
+  background: transparent;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Small helpers used by components */
+.search-box {
+  margin-bottom: 18px;
+}
+.search-input {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Card wrapper for lists */
+.list-card {
+  padding: 18px;
+  border-radius: 10px;
+  background: var(--surface-card);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.03);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}

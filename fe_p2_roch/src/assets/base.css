@@ -1,0 +1,154 @@
+/* Base theme variables and reset - diseño claro moderno */
+:root {
+  /* core colors - paleta suave */
+  --vt-c-white: #ffffff;
+  --vt-c-white-soft: #fafafa;
+  --vt-c-white-mute: #f8f9fa;
+
+  --vt-c-black: #2c3e50; /* texto más suave */
+  --vt-c-black-soft: #f8f9fa;
+  --vt-c-black-mute: #e9ecef;
+
+  --vt-c-indigo: #6c757d;
+
+  --vt-c-divider-light-1: rgba(108, 117, 125, 0.1);
+  --vt-c-divider-light-2: rgba(108, 117, 125, 0.05);
+  --vt-c-divider-dark-1: rgba(108, 117, 125, 0.15);
+  --vt-c-divider-dark-2: rgba(108, 117, 125, 0.1);
+
+  --vt-c-text-light-1: #495057;
+  --vt-c-text-light-2: #6c757d;
+  --vt-c-text-dark-1: var(--vt-c-white);
+  --vt-c-text-dark-2: #495057;
+
+  /* semantic color variables for the project (kept names used in components) */
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-mute: var(--vt-c-white-mute);
+
+  --color-border: var(--vt-c-divider-light-1);
+  --color-border-hover: var(--vt-c-divider-light-2);
+
+  --color-heading: var(--vt-c-black);
+  --color-text: var(--vt-c-text-dark-2);
+
+  --section-gap: 80px;
+
+  /* Accent - colores suaves */
+  --vt-c-green: #79b6b6; /* teal suave */
+  --vt-c-green-dark: #5c9999;
+
+  /* neutral surfaces */
+  --surface-card: #ffffff;
+  --surface-muted: #f8f9fa;
+}
+
+/* Reset and sensible defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body,
+#app {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial;
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Utility container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Generic card */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+/* Buttons (global) - diseño simple */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+.btn-primary {
+  background: #7cfc00;
+  color: #151c0e;
+  border: none;
+}
+.btn-secondary {
+  background: #7cfc00;
+  color: #151c0e;
+  border: none;
+}
+.btn-danger {
+  background: #7cfc00;
+  color: #151c0e;
+  border: none;
+} /* Inputs */
+input[type='text'],
+input[type='number'],
+input[type='date'],
+textarea,
+select {
+  border: 1px solid var(--color-border);
+  background: var(--surface-muted);
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--color-text);
+}
+
+/* Table default */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+thead th {
+  background: var(--surface-muted);
+  color: var(--color-heading);
+  font-weight: 700;
+}
+
+/* Simple responsive helpers */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+}
