@@ -19,17 +19,32 @@ export class CreateProgramaDto {
   idNivelAcademico: number;
 
   @ApiProperty()
+  @IsDefined({
+    message: 'El campo id de la modalidad de clase debe estar definido',
+  })
+  @IsInt({ message: 'El campo id de la modalidad de clase debe ser numérico' })
+  idModalidadClase: number;
+
+  @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombre es obligatorio' })
   @IsString({ message: 'El campo nombre debe ser de tipo cadena' })
-  @MaxLength(100, { message: 'El campo nombre no debe exceder los 100 caracteres' })
-  @Transform(({ value }): string | undefined => (typeof value === 'string' ? value.trim() : value))
+  @MaxLength(100, {
+    message: 'El campo nombre no debe exceder los 100 caracteres',
+  })
+  @Transform(({ value }): string | undefined =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   readonly nombre: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo descripción es obligatorio' })
   @IsString({ message: 'El campo descripción debe ser de tipo cadena' })
-  @MaxLength(2000, { message: 'El campo descripción no debe exceder los 2000 caracteres' })
-  @Transform(({ value }): string | undefined => (typeof value === 'string' ? value.trim() : value))
+  @MaxLength(2000, {
+    message: 'El campo descripción no debe exceder los 2000 caracteres',
+  })
+  @Transform(({ value }): string | undefined =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   readonly descripcion: string;
 
   @ApiProperty()
@@ -52,13 +67,17 @@ export class CreateProgramaDto {
 
   @ApiProperty()
   @IsDefined({ message: 'El campo fecha de inicio debe estar definido' })
-  @IsDateString({}, { message: 'El campo fecha de inicio debe ser una fecha válida' })
+  @IsDateString(
+    {},
+    { message: 'El campo fecha de inicio debe ser una fecha válida' },
+  )
   readonly fechaInicio: Date;
 
   @ApiProperty({ enum: ['En Planificación', 'En curso', 'Finalizado'] })
   @IsNotEmpty({ message: 'El campo estado es obligatorio' })
   @IsEnum(['En Planificación', 'En curso', 'Finalizado'], {
-    message: 'El campo estado debe ser: En Planificación, En curso o Finalizado',
+    message:
+      'El campo estado debe ser: En Planificación, En curso o Finalizado',
   })
   readonly estado: string;
 }

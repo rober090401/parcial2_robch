@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateProgramaDto } from './dto/create-programa.dto';
 import { UpdateProgramaDto } from './dto/update-programa.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +21,8 @@ export class ProgramasService {
       nombre: createProgramaDto.nombre.trim(),
       version: createProgramaDto.version,
     });
-    if (existe) throw new ConflictException('El programa con esta versión ya existe');
+    if (existe)
+      throw new ConflictException('El programa con esta versión ya existe');
 
     const programa = new Programa();
     Object.assign(programa, createProgramaDto);
@@ -43,7 +48,10 @@ export class ProgramasService {
     return programa;
   }
 
-  async update(id: number, updateProgramaDto: UpdateProgramaDto): Promise<Programa> {
+  async update(
+    id: number,
+    updateProgramaDto: UpdateProgramaDto,
+  ): Promise<Programa> {
     const programa = await this.findOne(id);
     Object.assign(programa, updateProgramaDto);
     return this.programasRepository.save(programa);

@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NivelesAcademicosModule } from './niveles-academicos/niveles-academicos.module';
 import { ProgramasModule } from './programas/programas.module';
+import { ModalidadClasesModule } from './modalidad-clases/modalidad-clases.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ProgramasModule } from './programas/programas.module';
     }),
     NivelesAcademicosModule,
     ProgramasModule,
+    ModalidadClasesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

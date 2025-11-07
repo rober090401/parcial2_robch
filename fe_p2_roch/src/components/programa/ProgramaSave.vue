@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { NivelAcademico } from '@/models/nivel-academico'
 import type { Programa } from '@/models/programa'
+import type { ModalidadClase } from '@/models/modalidad-clase'
 import axios from 'axios'
 import { computed, onMounted, ref, watch } from 'vue'
 
 const API_URL_PROGRAMAS = 'http://localhost:3000/api/v1/programas'
 const API_URL_NIVELES = 'http://localhost:3000/api/v1/niveles-academicos'
+const API_URL_MODALIDADES = 'http://localhost:3000/api/v1/modalidad-clases'
 
 const props = defineProps({
   mostrar: Boolean,
@@ -26,6 +28,7 @@ const dialogVisible = computed({
 })
 
 const nivelesAcademicos = ref<NivelAcademico[]>([])
+const modalidadesClases = ref<ModalidadClase[]>([])
 const programa = ref<Programa>({ ...props.programa } as Programa)
 
 watch(
@@ -44,10 +47,20 @@ async function obtenerNiveles() {
   }
 }
 
+async function obtenerModalidades() {
+  try {
+    const response = await axios.get(API_URL_MODALIDADES)
+    modalidadesClases.value = response.data
+  } catch (error) {
+    console.error('Error al obtener modalidades de clase:', error)
+  }
+}
+
 async function handleSave() {
   try {
     const body = {
       idNivelAcademico: Number(programa.value.idNivelAcademico),
+      idModalidadClase: Number(programa.value.idModalidadClase),
       nombre: programa.value.nombre,
       descripcion: programa.value.descripcion,
       version: Number(programa.value.version),
@@ -76,6 +89,7 @@ watch(
   (nuevoValor) => {
     if (nuevoValor) {
       obtenerNiveles()
+      obtenerModalidades()
 
       if (props.programa?.id) {
         programa.value = { ...props.programa }
@@ -90,6 +104,7 @@ watch(
       } else {
         programa.value = {
           idNivelAcademico: 0,
+          idModalidadClase: 0,
           nombre: '',
           descripcion: '',
           version: 1,
@@ -106,6 +121,7 @@ watch(
 onMounted(() => {
   if (props.mostrar) {
     obtenerNiveles()
+    obtenerModalidades()
   }
 })
 </script>
@@ -122,6 +138,16 @@ onMounted(() => {
             <option value="" disabled>Seleccione un nivel</option>
             <option v-for="nivel in nivelesAcademicos" :key="nivel.id" :value="nivel.id">
               {{ nivel.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="modalidadClase">Modalidad de Clase*</label>
+          <select id="modalidadClase" v-model="programa.idModalidadClase" required>
+            <option value="" disabled>Seleccione una modalidad</option>
+            <option v-for="modalidad in modalidadesClases" :key="modalidad.id" :value="modalidad.id">
+              {{ modalidad.nombre }}
             </option>
           </select>
         </div>

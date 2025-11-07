@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/modalidad-clases',
+      name: 'modalidad-clases',
+      component: () => import('../views/ModalidadClaseView.vue'),
+    },
   ],
 })
 

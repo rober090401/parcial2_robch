@@ -6,14 +6,22 @@ export class CreateNivelAcademicoDto {
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombre es obligatorio' })
   @IsString({ message: 'El campo nombre debe ser de tipo cadena' })
-  @MaxLength(20, { message: 'El campo nombre no debe exceder los 20 caracteres' })
-  @Transform(({ value }): string | undefined => (typeof value === 'string' ? value.trim() : value))
+  @MaxLength(20, {
+    message: 'El campo nombre no debe exceder los 20 caracteres',
+  })
+  @Transform(({ value }): string | undefined =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   readonly nombre: string;
 
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString({ message: 'El campo descripción debe ser de tipo cadena' })
-  @MaxLength(500, { message: 'El campo descripción no debe exceder los 500 caracteres' })
-  @Transform(({ value }): string | undefined => (typeof value === 'string' ? value.trim() : value))
+  @MaxLength(500, {
+    message: 'El campo descripción no debe exceder los 500 caracteres',
+  })
+  @Transform(({ value }): string | undefined =>
+    typeof value === 'string' ? value.trim() : value,
+  )
   readonly descripcion?: string;
 }

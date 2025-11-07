@@ -15,7 +15,8 @@ const programasFiltrados = computed(() => {
   return programas.value.filter(
     (programa) =>
       programa.nombre.toLowerCase().includes(busqueda.value.toLowerCase()) ||
-      programa.nivelAcademico?.nombre.toLowerCase().includes(busqueda.value.toLowerCase())
+      programa.nivelAcademico?.nombre.toLowerCase().includes(busqueda.value.toLowerCase()) ||
+      programa.modalidadClase?.nombre.toLowerCase().includes(busqueda.value.toLowerCase())
   )
 })
 
@@ -82,6 +83,7 @@ defineExpose({ obtenerLista })
           <tr>
             <th>Nro.</th>
             <th>Nivel Académico</th>
+            <th>Modalidad</th>
             <th>Nombre</th>
             <th>Versión</th>
             <th>Duración</th>
@@ -95,6 +97,7 @@ defineExpose({ obtenerLista })
           <tr v-for="(programa, index) in programasFiltrados" :key="programa.id">
             <td>{{ index + 1 }}</td>
             <td>{{ programa.nivelAcademico?.nombre || '-' }}</td>
+            <td>{{ programa.modalidadClase?.nombre || '-' }}</td>
             <td>{{ programa.nombre }}</td>
             <td>v{{ programa.version }}</td>
             <td>{{ programa.duracionMeses }} meses</td>

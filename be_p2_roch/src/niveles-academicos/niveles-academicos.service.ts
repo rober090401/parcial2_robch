@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateNivelAcademicoDto } from './dto/create-nivel-academico.dto';
 import { UpdateNivelAcademicoDto } from './dto/update-nivel-academico.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +16,9 @@ export class NivelesAcademicosService {
     private nivelesAcademicosRepository: Repository<NivelAcademico>,
   ) {}
 
-  async create(createNivelAcademicoDto: CreateNivelAcademicoDto): Promise<NivelAcademico> {
+  async create(
+    createNivelAcademicoDto: CreateNivelAcademicoDto,
+  ): Promise<NivelAcademico> {
     const existe = await this.nivelesAcademicosRepository.findOneBy({
       nombre: createNivelAcademicoDto.nombre.trim(),
     });
@@ -28,12 +34,18 @@ export class NivelesAcademicosService {
   }
 
   async findOne(id: number): Promise<NivelAcademico> {
-    const nivelAcademico = await this.nivelesAcademicosRepository.findOneBy({ id });
-    if (!nivelAcademico) throw new NotFoundException('El nivel académico no existe');
+    const nivelAcademico = await this.nivelesAcademicosRepository.findOneBy({
+      id,
+    });
+    if (!nivelAcademico)
+      throw new NotFoundException('El nivel académico no existe');
     return nivelAcademico;
   }
 
-  async update(id: number, updateNivelAcademicoDto: UpdateNivelAcademicoDto): Promise<NivelAcademico> {
+  async update(
+    id: number,
+    updateNivelAcademicoDto: UpdateNivelAcademicoDto,
+  ): Promise<NivelAcademico> {
     const nivelAcademico = await this.findOne(id);
     Object.assign(nivelAcademico, updateNivelAcademicoDto);
     return this.nivelesAcademicosRepository.save(nivelAcademico);

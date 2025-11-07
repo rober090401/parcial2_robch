@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { NivelesAcademicosService } from './niveles-academicos.service';
 import { CreateNivelAcademicoDto } from './dto/create-nivel-academico.dto';
 import { UpdateNivelAcademicoDto } from './dto/update-nivel-academico.dto';
@@ -7,7 +15,9 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('niveles-academicos')
 @Controller('niveles-academicos')
 export class NivelesAcademicosController {
-  constructor(private readonly nivelesAcademicosService: NivelesAcademicosService) {}
+  constructor(
+    private readonly nivelesAcademicosService: NivelesAcademicosService,
+  ) {}
 
   @Post()
   create(@Body() createNivelAcademicoDto: CreateNivelAcademicoDto) {
@@ -25,7 +35,10 @@ export class NivelesAcademicosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNivelAcademicoDto: UpdateNivelAcademicoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateNivelAcademicoDto: UpdateNivelAcademicoDto,
+  ) {
     return this.nivelesAcademicosService.update(+id, updateNivelAcademicoDto);
   }
 

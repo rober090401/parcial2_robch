@@ -1,4 +1,5 @@
 import { NivelAcademico } from 'src/niveles-academicos/entities/nivel-academico.entity';
+import { ModalidadClase } from 'src/modalidad-clases/entities/modalidad-clase.entity';
 import {
   Column,
   CreateDateColumn,
@@ -17,6 +18,9 @@ export class Programa {
 
   @Column('integer', { name: 'id_nivel_academico' })
   idNivelAcademico: number;
+
+  @Column('integer', { name: 'id_modalidad_clase' })
+  idModalidadClase: number;
 
   @Column('varchar', { length: 100 })
   nombre: string;
@@ -54,4 +58,8 @@ export class Programa {
   @ManyToOne(() => NivelAcademico, (nivelAcademico) => nivelAcademico.programas)
   @JoinColumn({ name: 'id_nivel_academico', referencedColumnName: 'id' })
   nivelAcademico: NivelAcademico;
+
+  @ManyToOne(() => ModalidadClase)
+  @JoinColumn({ name: 'id_modalidad_clase', referencedColumnName: 'id' })
+  modalidadClase: ModalidadClase;
 }
